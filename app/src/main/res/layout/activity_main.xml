@@ -32,7 +32,10 @@
         </LinearLayout>
 
         <include
-            android:id="@+id/included"
+            android:id="@+id/included1"
+            layout="@layout/view_include_test"/>
+        <include
+            android:id="@+id/included2"
             layout="@layout/view_include_test"/>
 
         <TextView
