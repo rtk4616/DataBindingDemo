@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.tvEmail.setText(Html.fromHtml("gmail: <font color=\"#3F51B5\">yuweiguocn@gmail.com</font>"));
 
 
-        ViewInflateTestBinding inflateTestBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.view_inflate_test, null, true);
+        binding.included.tvInclude.setText("Hi,I'm from include Layout.");
+
+
+        ViewInflateTestBinding inflateTestBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.view_inflate_test, null, false);
         binding.llContainer.addView(inflateTestBinding.getRoot());
 
     }
