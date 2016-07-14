@@ -4,7 +4,7 @@
 Show DataBinding features.
 
 
-![](/art/example.png)
+![](/art/data-binding-demo1.gif)
 
 
 

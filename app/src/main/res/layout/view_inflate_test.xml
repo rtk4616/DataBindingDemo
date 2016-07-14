@@ -10,9 +10,8 @@
             android:id="@+id/tv_inflate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi,I'm from Inflated Layout."
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:text="@string/tip_inflated"
+            style="@style/TextStyle"
             />
 
     </LinearLayout>

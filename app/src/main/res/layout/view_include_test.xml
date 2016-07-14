@@ -2,12 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
+    <data>
+        <variable
+            name="user"
+            type="io.github.yuweiguocn.databindingdemo.bean.User"/>
+
+    </data>
+
     <TextView
         android:id="@+id/tv_include"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
+        style="@style/TextStyle"
+        android:text="@{user.include}"
         />
 
 </layout>
