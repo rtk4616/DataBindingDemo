@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
+
         <import type="android.view.View"/>
+
         <import type="java.util.List"/>
+
+        <import type="java.util.Map"/>
+
+        <import type="io.github.yuweiguocn.databindingdemo.bean.Fields"/>
+
         <variable
             name="user"
             type="io.github.yuweiguocn.databindingdemo.bean.User"/>
+
+        <variable
+            name="score"
+            type="io.github.yuweiguocn.databindingdemo.bean.Score"/>
+
         <variable
             name="stringList"
             type="List&lt;String>"/>
+
         <variable
             name="handlers"
             type="io.github.yuweiguocn.databindingdemo.ui.main.MainClickHandlers"/>
+
         <variable
             name="presenter"
             type="io.github.yuweiguocn.databindingdemo.ui.main.MainPresenter"/>
+
+        <variable
+            name="map"
+            type="Map&lt;String, Object>"/>
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context=".ui.main.MainActivity">
 
@@ -33,55 +51,196 @@
             android:id="@+id/include_toolbar"
             layout="@layout/view_toolbar"/>
 
-        <TextView
-            style="@style/TextStyle"
-            android:id="@+id/tv_name"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:onClick="@{handlers::onClickName}"
-            android:text="@{user.name}"
-            />
 
-        <TextView
-            style="@style/TextStyle"
-            android:text="@{user.age}"
-            android:onClick="@{() -> presenter.onClick(context)}"
-            />
-
-        <CheckBox
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cb_db"
-            android:checked="@{user.isComplete}"
-            android:layout_marginLeft="@dimen/cb_margin"
-            android:onCheckedChanged="@{(cb, isChecked) -> presenter.onCompletedChanged(context,user,isChecked)}"
-            />
-
-
-        <TextView
-            style="@style/TextStyle"
-            android:text="@string/tip_visibility"
-            android:onLongClick="@{() -> presenter.onHelloLongClick(context)}"
-            android:visibility="@{user.isComplete ? View.VISIBLE : View.GONE}"
-            />
-
-        <TextView
-            style="@style/TextStyle"
-            android:text="@{stringList[0], default=我是默认值如果为了调整UI查看Preview请使用tools}"
-            />
-
-        <LinearLayout
-            android:id="@+id/ll_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
             >
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/cb_margin"
+                >
 
-        <include
-            layout="@layout/view_include_test"
-            app:user="@{user}"
-            />
+                <TextView
+                    style="@style/TextStyle"
+                    android:text='@{map["problem"]}'
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="@{@string/person_info(map[`name`],map[`age`])}"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@{map[&quot;name&quot;]}"
+                        />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:text="@{map[Fields.NAME]}"
+                        />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:text="@{String.valueOf(1+(Integer)map[Fields.AGE])}"
+                        />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/et_math"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="@string/hint_math"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="@{score.math}"
+                    />
+
+                <EditText
+                    android:id="@+id/et_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="@string/hint_english"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="@{score.english}"
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="@string/hint_phone"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="@{user.phone}"
+                    />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"/>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    >
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/white"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="@string/hint_divider"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        />
+
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/TextStyle"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:onClick="@{handlers::onClickName}"
+                    android:text="@{user.name}"
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:onClick="@{() -> presenter.onClick(context)}"
+                    android:text="@{user.age}"
+                    />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="@{user.isComplete}"
+                    android:onCheckedChanged="@{(cb, isChecked) -> presenter.onCompletedChanged(context,user,isChecked)}"
+                    android:text="@string/cb_db"
+                    />
+
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:onLongClick="@{() -> presenter.onHelloLongClick(context)}"
+                    android:text="@string/tip_visibility"
+                    android:visibility="@{user.isComplete ? View.VISIBLE : View.GONE}"
+                    />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="@{stringList[0], default=我是默认值如果为了调整UI查看Preview请使用tools}"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/ll_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+
+                <include
+                    layout="@layout/view_include_test"
+                    app:user="@{user}"
+                    />
+
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
 
     </LinearLayout>
+
 </layout>

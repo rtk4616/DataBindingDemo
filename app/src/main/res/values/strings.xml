@@ -6,4 +6,10 @@
     <string name="contact_me">Contact me</string>
     <string name="tip_visibility">我是通过Observable变量的值控制是否显示并且通过监听绑定处理了长按事件</string>
     <string name="tip_inflated">我是通过代码动态Inflated的布局</string>
+
+    <string name="person_info">My name is %1$s,I\'m %2$s.</string>
+    <string name="hint_math">please input math score</string>
+    <string name="hint_english">please input english score</string>
+    <string name="hint_phone">please input your phone</string>
+    <string name="hint_divider">华丽的分隔线</string>
 </resources>

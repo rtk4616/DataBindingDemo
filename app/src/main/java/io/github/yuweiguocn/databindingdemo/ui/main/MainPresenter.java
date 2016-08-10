@@ -16,7 +16,13 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void loadData() {
-        view.onSuccess(new User("我是姓名 ，通过方法引用处理了点击事件", "我是年龄 ，通过监听绑定处理了点击事件","我是传递到include的文本",true));
+        List<User> users = new ArrayList<User>();
+        for (int i = 0; i < 5; i++) {
+            User user = new User("姓名"+i, "年龄"+i, "", true, "");
+            users.add(user);
+        }
+        view.onSuccessUserList(users);
+        view.onSuccess(new User("我是姓名 ，通过方法引用处理了点击事件", "我是年龄 ，通过监听绑定处理了点击事件","我是传递到include的文本",true,"请输入你的电话"));
         List<String> strings = new ArrayList<>();
         strings.add("我是List中的数据");
         view.onSuccess(strings);

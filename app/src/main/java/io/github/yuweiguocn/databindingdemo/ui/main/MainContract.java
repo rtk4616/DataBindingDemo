@@ -16,6 +16,7 @@ public interface MainContract {
 
     interface View extends BaseView<Presenter> {
         void onSuccess(User user);
+        void onSuccessUserList(List<User> users);
         void onSuccess(List<String> strings);
         void invalidateAll();
     }
