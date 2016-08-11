@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,24 +11,38 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/item_selector"
         android:orientation="horizontal"
         >
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdv_user_head"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:imageUrl="@{user.url}"
+            fresco:placeholderImage="@mipmap/ic_launcher"
+            />
+
         <TextView
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:id="@+id/tv_name"
+            android:layout_toRightOf="@id/sdv_user_head"
             style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:text="@{user.name}"
             />
 
         <TextView
+            android:layout_toRightOf="@id/sdv_user_head"
+            android:layout_below="@id/tv_name"
             style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:text="@{user.age}"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

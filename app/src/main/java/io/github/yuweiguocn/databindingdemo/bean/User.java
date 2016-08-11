@@ -13,11 +13,14 @@ public class User {
     public ObservableBoolean isComplete;
     public final ObservableField<String> phone = new ObservableField<>();
 
-    public User(String name, String age, String include, boolean isComplete,String phone) {
+    public final String url;
+
+    public User(String name, String age, String include, boolean isComplete,String phone,String url) {
         this.name = name;
         this.age = age;
         this.include = include;
         this.isComplete = new ObservableBoolean(isComplete);
         this.phone.set(phone);
+        this.url = url;
     }
 }

@@ -71,10 +71,6 @@ public class MainActivity extends BaseActivity implements MainContract.View{
         binding.etPhone.setImeOptions(EditorInfo.IME_ACTION_DONE);
         binding.etPhone.setOnEditorActionListener(new MyAction());
 
-
-
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ct);
         linearLayoutManager.setAutoMeasureEnabled(true);
         binding.rv.setLayoutManager(linearLayoutManager);
@@ -91,22 +87,13 @@ public class MainActivity extends BaseActivity implements MainContract.View{
 
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                handleInputData();
+                return true;
+            }
             switch (actionId) {
                 case EditorInfo.IME_ACTION_DONE:
-                    String math = binding.etMath.getText().toString();
-                    String english = binding.etEnglish.getText().toString();
-                    String phone = binding.etPhone.getText().toString();
-                    if (!TextUtils.isEmpty(math)) {
-                        score.setMath("数学成绩："+math);
-                    }
-                    if (!TextUtils.isEmpty(english)) {
-                        score.setEnglish("英语成绩："+english);
-                    }
-
-                    if (!TextUtils.isEmpty(phone)) {
-                        binding.getUser().phone.set("电话："+phone);
-                    }
-                    hideKeybord(binding.etEnglish);
+                    handleInputData();
                     break;
                 case EditorInfo.IME_ACTION_NEXT:
                     binding.etEnglish.requestFocus();
@@ -114,6 +101,23 @@ public class MainActivity extends BaseActivity implements MainContract.View{
             }
             return true;
         }
+    }
+
+    private void handleInputData() {
+        String math = binding.etMath.getText().toString();
+        String english = binding.etEnglish.getText().toString();
+        String phone = binding.etPhone.getText().toString();
+        if (!TextUtils.isEmpty(math)) {
+            score.setMath("数学成绩："+math);
+        }
+        if (!TextUtils.isEmpty(english)) {
+            score.setEnglish("英语成绩："+english);
+        }
+
+        if (!TextUtils.isEmpty(phone)) {
+            binding.getUser().phone.set("电话："+phone);
+        }
+        hideKeybord(binding.etEnglish);
     }
 
 
