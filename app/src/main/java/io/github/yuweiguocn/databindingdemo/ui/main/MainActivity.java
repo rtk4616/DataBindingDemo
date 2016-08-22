@@ -34,6 +34,7 @@ public class MainActivity extends BaseActivity implements MainContract.View{
     private ActivityMainBinding binding;
     private Score score;
     private UserAdapter adapter;
+//    private UserAdapter2 adapter;
     public LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -81,6 +82,7 @@ public class MainActivity extends BaseActivity implements MainContract.View{
         binding.rv.setNestedScrollingEnabled(false);
 
         adapter = new UserAdapter(this);
+//        adapter = new UserAdapter2(this);
         binding.rv.setAdapter(adapter);
 
         presenter.loadData();
