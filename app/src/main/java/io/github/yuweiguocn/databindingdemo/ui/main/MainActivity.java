@@ -30,12 +30,12 @@ import io.github.yuweiguocn.databindingdemo.ui.about.AboutActivity;
 
 public class MainActivity extends BaseActivity implements MainContract.View{
 
-
     private MainPresenter presenter;
     private ActivityMainBinding binding;
     private Score score;
-
     private UserAdapter adapter;
+    public LinearLayoutManager linearLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +71,12 @@ public class MainActivity extends BaseActivity implements MainContract.View{
         binding.etPhone.setImeOptions(EditorInfo.IME_ACTION_DONE);
         binding.etPhone.setOnEditorActionListener(new MyAction());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ct);
+
+        linearLayoutManager = new LinearLayoutManager(ct);
         linearLayoutManager.setAutoMeasureEnabled(true);
-        binding.rv.setLayoutManager(linearLayoutManager);
+//        binding.rv.setLayoutManager(linearLayoutManager);
+        binding.setMain(this);//set LayoutManager by auto setters
+
         binding.rv.setHasFixedSize(true);
         binding.rv.setNestedScrollingEnabled(false);
 

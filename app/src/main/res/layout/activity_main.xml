@@ -39,6 +39,10 @@
             name="map"
             type="Map&lt;String, Object>"/>
 
+        <variable
+            name="main"
+            type="io.github.yuweiguocn.databindingdemo.ui.main.MainActivity"/>
+
     </data>
 
     <LinearLayout
@@ -156,6 +160,7 @@
                     android:id="@+id/rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layoutManager="@{main.linearLayoutManager}"
                     android:scrollbars="none"/>
 
 

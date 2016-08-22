@@ -12,4 +12,6 @@
     <string name="hint_english">please input english score</string>
     <string name="hint_phone">please input your phone</string>
     <string name="hint_divider">华丽的分隔线</string>
+    <string name="name_format">姓名：%1$s</string>
+    <string name="age_format">年龄：%1$s</string>
 </resources>
